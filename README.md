@@ -1,16 +1,14 @@
-# go_router_example
+# 🚀 Flutter'da Modern Navigasyon: **go_router** Kullanımı
 
-A new Flutter project.
+Bu repo, Flutter uygulamalarında **go_router** paketini kullanarak **modern, esnek ve URL tabanlı navigasyon** yapısını nasıl oluşturabileceğinizi gösteren bir örnek proje içermektedir. Eğer Flutter'da **daha temiz ve yönetilebilir bir navigasyon yapısı** arıyorsanız, bu proje tam size göre! 🏆
 
-## Getting Started
+## 📌 Özellikler
+- **URL Tabanlı Routing** 📌
+- **Dinamik Parametre ve Sorgu Desteği** 🔢
+- **Derin Bağlantılar (Deep Linking)** 🌍
+- **Hata Sayfaları Yönetimi** 🚧
 
-This project is a starting point for a Flutter application.
+## 📖 Detaylı Makale  
+Bu konuyla ilgili daha fazla bilgi almak ve kapsamlı bir anlatım okumak için aşağıdaki makaleyi inceleyebilirsiniz:  
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🔗 **[Flutter'da Navigasyonun Yeni Yıldızı: go_router ile Modern Routing](https://alptugyaman.medium.com/flutterda-navigasyonun-yeni-y%C4%B1ld%C4%B1z%C4%B1-go-router-ile-modern-routing-bc5b0767a142)**  
