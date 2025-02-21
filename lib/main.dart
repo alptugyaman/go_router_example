@@ -11,15 +11,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GoRouter router = GoRouter(
+      initialLocation: '/home',
       routes: <RouteBase>[
-        GoRoute(
-          path: '/',
-          builder: (BuildContext context, GoRouterState state) {
-            return const HomeScreen();
+        ShellRoute(
+          builder: (context, state, child) {
+            return MainScreen(child: child);
           },
           routes: <RouteBase>[
             GoRoute(
-              path: 'userMe',
+              path: '/',
+              redirect: (_, __) => '/home',
+            ),
+            GoRoute(
+              path: '/home',
+              builder: (context, state) => const HomeScreen(),
+            ),
+            GoRoute(
+              path: '/userMe',
               builder: (BuildContext context, GoRouterState state) {
                 return const MeScreen();
               },
@@ -30,6 +38,10 @@ class MyApp extends StatelessWidget {
                 final String id = state.pathParameters['id']!;
                 return UserScreen(id: id);
               },
+            ),
+            GoRoute(
+              path: '/settings',
+              builder: (context, state) => const SettingsScreen(),
             ),
           ],
         ),
@@ -47,6 +59,42 @@ class MyApp extends StatelessWidget {
       ),
       routerConfig: router,
     );
+  }
+}
+
+class MainScreen extends StatelessWidget {
+  final Widget child;
+
+  const MainScreen({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _getSelectedIndex(context),
+        onTap: (index) => switch (index) {
+          0 => context.go('/home'),
+          1 => context.go('/userMe'),
+          2 => context.go('/settings'),
+          _ => context.go('/home'),
+        },
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: 'Settings'),
+        ],
+      ),
+      body: child,
+    );
+  }
+
+  int _getSelectedIndex(BuildContext context) {
+    const routes = ['/home', '/userMe', '/settings'];
+    final location = GoRouterState.of(context).matchedLocation;
+    final index = routes.indexOf(location);
+
+    return index != -1 ? index : 0;
   }
 }
 
@@ -107,6 +155,23 @@ class UserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('User Screen')),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () => context.go('/'),
+          child: const Text('Go back to the Home screen'),
+        ),
+      ),
+    );
+  }
+}
+
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Settings Screen')),
       body: Center(
         child: ElevatedButton(
           onPressed: () => context.go('/'),
